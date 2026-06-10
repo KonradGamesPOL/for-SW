@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+
+<html>
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SW Cost Calculator </title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+
+<body>
+
+    <h1 class="head"> SW Cost Calculator </h1>
+    <p class="credit"> Made by KonradGamesPOL / SFPOL leader</p>
+
+    <br>
+
+    <div class="sections">
+      
+        <h3> Building name (with spaces): <input class="text_inputs" id="building_name" type="text" oninput="calculate()" value="U-CM Extractor"> </h3>
+        <h3> From level: <input class="number_inputs" id="from_level" type="number" oninput="calculate()" min="1" max="9" value="1"> </h3>
+        <h3> To level: <input class="number_inputs" id="to_level" type="number" oninput="calculate()" min="2" max="10" value="2"> </h3>
+   
+    </div>
+
+
+    <br>
+
+
+    <div class="sections">
+
+        <h2> Cost of upgrading: </h2>
+
+        <h3 id="ER"> ER: 0</h3>
+        <h3 id="CM"> CM: 0</h3>
+        <h3 id="EL"> EL: 0</h3>
+        <h3 id="CS"> CS: 0</h3>
+
+    </div>
+    
+    <br>
+
+    <a href="index.html"> <button class="buttons"> <h1> Main Menu </h1></button></a>
+    
+
+<script>
+
+    let buildings = {
+
+        "City": {
+            "ID": 1,
+            "ER": 1_000_000_000,
+            "CM": 5000,
+            "EL": 2500,
+            "CS": 5000,
+        },
+    
+        "U-CM Extractor": {
+            "ID": 2,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "U-EL Extractor": {
+            "ID": 3,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "U-CS Extractor": {
+            "ID": 4,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "CM Refinery": {
+            "ID": 5,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "EL Refinery": {
+            "ID": 6,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "CS Refinery": {
+            "ID": 7,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "U-CM Storage": {
+            "ID": 9,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "U-EL Storage": {
+            "ID": 10,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "U-CS Storage": {
+            "ID": 11,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "CM Storage": {
+            "ID": 13,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "EL Storage": {
+            "ID": 14,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+
+        "CS Storage": {
+            "ID": 15,
+            "ER": 1_000_000_000,
+            "CM": 20_000,
+            "EL": 10_000,
+            "CS": 0,
+        },
+    };
+
+
+    
+    function calculate() {
+        
+        let ER = 0;
+        let CM = 0;
+        let EL = 0;
+        let CS = 0;
+
+        let current_level = Number(document.getElementById("from_level").value);
+        let target_level = Number(document.getElementById("to_level").value);
+
+        let building = document.getElementById("building_name").value;
+
+        let base_ER = buildings[building]["ER"];
+        let base_CM = buildings[building]["CM"];
+        let base_EL = buildings[building]["EL"];
+        let base_CS = buildings[building]["CS"];
+
+
+        for (let level = current_level; level < target_level; level++) {
+
+            ER += base_ER * level;
+            CM += base_CM * level;
+            EL += base_EL * level;
+            CS += base_CS * level;
+
+        };
+
+
+        ER = ER.toLocaleString("de-DE")
+        CM = CM.toLocaleString("de-DE")
+        EL = EL.toLocaleString("de-DE")
+        CS = CS.toLocaleString("de-DE")
+
+        document.getElementById("ER").innerText = "ER: " + ER;
+        document.getElementById("CM").innerText = "CM: " + CM;
+        document.getElementById("EL").innerText = "EL: " + EL;
+        document.getElementById("CS").innerText = "CS: " + CS;
+
+    };
+
+
+</script>
+
+</body>
+
+
+</html>
